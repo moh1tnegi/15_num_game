@@ -11,13 +11,6 @@
 					   12,  9,  5,  0}
 #define swap(x, y) x+=y;y=x-y;x-=y
 
-COORD coord = {0, 0};
-void gotoxy(int row, int col) {
-	coord.X = row;
-	coord.Y = col;
-	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
-}
-
 int getkey() {
 	int ch;
 	ch = getch();
@@ -43,57 +36,54 @@ int main() {
 					   14,  3,  6, 13,
 					   12,  9,  5,  0};
 	while(1) {
-        system("cls");
-        for(i=0; i<4; i++) {
-        	for(j=0; j<4; j++) {
-                if(!puzzle[i][j]) {
-                    printf("   ");
-                    continue;
-                }
-        		printf("%2d ", puzzle[i][j]);
+        	system("cls");
+        	for(i=0; i<4; i++) {
+        		for(j=0; j<4; j++) {
+        	        if(!puzzle[i][j]) {
+                    	printf("   ");
+                    	continue;
+                	}
+	        		printf("%2d ", puzzle[i][j]);
+        		}
+        		printf("\n");
         	}
-        	printf("\n");
-        }
-        if(puzzle[3][0]==13&&puzzle[3][1]==14&&puzzle[3][2]==15)
-        if(check(&puzzle[0][0])) {
-            printf("\nCongratulations... Puzzle Completed!!!\n");
-            printf("Total Moves: %d\n", totalMoves);
-            printf("Press any key...");getch();break;
-            //printf("Play again?(y/n): ");
-            //if(getche()=='n') break;
-            //else puzl;
-        }
-        printf("\nTotal Moves: %d", totalMoves);
-        i--;j--;
-        //if(x) gotoxy(3*x+1, y);
-        //else gotoxy(x+1, y);
-        int tmp;
-        tmp=getkey();//up 72 dw 80 lt 75 rt 77
-        if(tmp==72) {
-        	if(y==3) continue;
-        	swap(puzzle[y][x], puzzle[y+1][x]);
-        	y++;
-        	totalMoves++;
-        }
-        else if(tmp==80) {
-        	if(y==0) continue;
-        	swap(puzzle[y][x], puzzle[y-1][x]);
-        	y--;
-        	totalMoves++;
-        }
-        else if(tmp==75) {
-        	if(x==3) continue;
-        	swap(puzzle[y][x], puzzle[y][x+1]);
-        	x++;
-        	totalMoves++;
-        }
-        else if(tmp==77) {
-        	if(x==0) continue;
-        	swap(puzzle[y][x], puzzle[y][x-1]);
-        	x--;
-        	totalMoves++;
-        }
-        else ;
+	        if(puzzle[3][0]==13&&puzzle[3][1]==14&&puzzle[3][2]==15)
+        	if(check(&puzzle[0][0])) {
+	            printf("\nCongratulations... Puzzle Completed!!!\n");
+        	    printf("Total Moves: %d\n", totalMoves);
+	            printf("Press any key...");getch();break;
+        	    //printf("Play again?(y/n): ");
+	            //if(getche()=='n') break;
+        	    //else puzl;
+	        }
+        	printf("\nTotal Moves: %d", totalMoves);
+        	i--;j--;
+        	int tmp;
+        	tmp=getkey();//up 72 dw 80 lt 75 rt 77
+	        if(tmp==72) {
+        		if(y==3) continue;
+        		swap(puzzle[y][x], puzzle[y+1][x]);
+	        	y++;
+        		totalMoves++;
+        	}
+	        else if(tmp==80) {
+        		if(y==0) continue;
+        		swap(puzzle[y][x], puzzle[y-1][x]);
+	        	y--;
+        		totalMoves++;
+        	}
+        	else if(tmp==75) {
+        		if(x==3) continue;
+	        	swap(puzzle[y][x], puzzle[y][x+1]);
+        		x++;
+        		totalMoves++;
+	        }
+        	else if(tmp==77) {
+        		if(x==0) continue;
+	        	swap(puzzle[y][x], puzzle[y][x-1]);
+        		x--;
+        		totalMoves++;
+        	}
 	}
     return 0;
 }
