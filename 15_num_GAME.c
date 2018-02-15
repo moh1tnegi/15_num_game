@@ -4,11 +4,6 @@
 #include <windows.h>
 #include <dos.h>
 
-#define puzl puzzle[4][4]={\
-						1,  4, 15,  7,\
-						8, 10,  2, 11,\
-					   14,  3,  6, 13,\
-					   12,  9,  5,  0}
 #define swap(x, y) x+=y;y=x-y;x-=y
 
 int getkey() {
@@ -52,38 +47,32 @@ int main() {
 	            printf("\nCongratulations... Puzzle Completed!!!\n");
         	    printf("Total Moves: %d\n", totalMoves);
 	            printf("Press any key...");getch();break;
-        	    //printf("Play again?(y/n): ");
-	            //if(getche()=='n') break;
-        	    //else puzl;
 	        }
         	printf("\nTotal Moves: %d", totalMoves);
-        	i--;j--;
-        	int tmp;
-        	tmp=getkey();//up 72 dw 80 lt 75 rt 77
+        	i--;
+		j--;
+        	int tmp=getkey();//up 72 dw 80 lt 75 rt 77
 	        if(tmp==72) {
         		if(y==3) continue;
         		swap(puzzle[y][x], puzzle[y+1][x]);
 	        	y++;
-        		totalMoves++;
         	}
 	        else if(tmp==80) {
         		if(y==0) continue;
         		swap(puzzle[y][x], puzzle[y-1][x]);
 	        	y--;
-        		totalMoves++;
         	}
         	else if(tmp==75) {
         		if(x==3) continue;
 	        	swap(puzzle[y][x], puzzle[y][x+1]);
         		x++;
-        		totalMoves++;
 	        }
         	else if(tmp==77) {
         		if(x==0) continue;
 	        	swap(puzzle[y][x], puzzle[y][x-1]);
         		x--;
-        		totalMoves++;
         	}
+        	totalMoves++;
 	}
     return 0;
 }
